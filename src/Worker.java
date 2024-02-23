@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Worker {
     private int personalId;
     private String name;
@@ -32,5 +34,18 @@ public class Worker {
     @Override
     public String toString() {
         return String.format("%d: %s, %s, %s years", personalId, name, phone, seniority);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Worker worker = (Worker) o;
+        return seniority == worker.seniority && Objects.equals(name, worker.name) && Objects.equals(phone, worker.phone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, phone, seniority);
     }
 }
